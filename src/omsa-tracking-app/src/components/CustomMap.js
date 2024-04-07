@@ -7,6 +7,7 @@ import CustomMarker from "./CustomMarker";
 
 function CustomMap() {
   const busData = useBusData();
+  const buses = busData[0]?.buses || [];
   return (
     <div className="absolute top-0 left-0 w-full min-h-[482px]">
       <APIProvider apiKey={""}>
@@ -18,7 +19,7 @@ function CustomMap() {
           gestureHandling={"greedy"}
           disableDefaultUI={true}
         >
-          {busData.map((bus) => (
+          {buses.map((bus) => (
             <CustomMarker
               lat={bus.location.latitude}
               lng={bus.location.longitude}

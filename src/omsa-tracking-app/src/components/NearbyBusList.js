@@ -3,13 +3,15 @@ import NearbyBusItem from "./NearbyBusItem";
 
 function NearbyBusList() {
   const busData = useBusData();
+  const busStops = busData[0] || [];
+
   return (
     <div className="flex flex-col px-5 pt-3.5 pb-6 mt-4 w-full rounded-2xl bg-stone-50">
       <div className="flex gap-5 px-px text-black">
         <div className="flex flex-auto py-3 bg-yellow-300 rounded-lg">
-          <div className="text-sm px-3 font-medium">43B</div>
+          <div className="text-sm px-3 font-medium">{busStops.id}</div>
           <div className="flex-auto text-xs">
-            Av. 27 de Febrero Proximo Av. Maximo Gomez
+            {busStops.name}
           </div>
         </div>
         <img
@@ -18,8 +20,8 @@ function NearbyBusList() {
           className="shrink-0 my-auto aspect-[0.94] w-[18px]"
         />
       </div>
-      {busData && busData.length > 0 ? (
-        busData.map((bus, index) => <NearbyBusItem key={index} {...bus} />)
+      {busStops.buses && busStops.buses.length > 0 ? (
+        busStops.buses.map((bus, index) => <NearbyBusItem key={index} {...bus} />)
       ) : (
         <div>No Bus available</div>
       )}
