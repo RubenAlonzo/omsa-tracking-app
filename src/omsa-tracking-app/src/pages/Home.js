@@ -1,6 +1,9 @@
 import CustomMap from "../components/CustomMap";
 import SearchBar from "../components/SearchBar";
 import NearbyBusList from "../components/NearbyBusList";
+import React from "react";
+import NavigationBar from "../components/NavigationBar";
+
 
 function Home() {
   return (
@@ -28,11 +31,7 @@ function Home() {
           <NearbyBusList />
         </div>
       </div>
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/37bc4f9946a4bdaee227264f41c8c2cbae651d3d52c062497d7528f0a8618707?apiKey=fb34ab8a011e440488e897e0309c7345&"
-        alt="Footer"
-        className="mt-3 w-full shadow-sm aspect-[6.67]"
-      />
+      <NavigationBar />
     </div>
   );
 }

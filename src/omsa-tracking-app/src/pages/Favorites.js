@@ -1,3 +1,5 @@
+import NavigationBar from "../components/NavigationBar";
+
 const busData = [
   {
     id: "43B",
@@ -145,12 +147,7 @@ function Favorites() {
           <BusStop key={data.id} data={data} />
         ))}
       </div>
-      <img
-        loading="lazy"
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/062c21ae95407c2b67bbeb13cb74d3b45703ac31ef27c690907c753541407bc1?apiKey=fb34ab8a011e440488e897e0309c7345&"
-        alt="Map"
-        className="mt-44 w-full shadow-sm aspect-[6.67]"
-      />
+      <NavigationBar />
     </div>
   );
 }

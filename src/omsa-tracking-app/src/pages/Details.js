@@ -1,3 +1,5 @@
+import NavigationBar from "../components/NavigationBar";
+
 function LocationInfo() {
   return (
     <div className="flex gap-5 max-md:flex-col max-md:gap-0">
@@ -136,12 +138,7 @@ function Details() {
             </div>
           ))}
         </main>
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/3c8526958204ff61240b17e8569021712fad4d9d69be91fc6890632420e65807?apiKey=fb34ab8a011e440488e897e0309c7345&"
-          alt=""
-          className="w-full shadow-sm aspect-[6.67]"
-        />
+        <NavigationBar />
       </div>
     </div>
   );
