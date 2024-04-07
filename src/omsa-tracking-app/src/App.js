@@ -1,46 +1,10 @@
 import React from "react";
-import {
-  APIProvider,
-  Map,
-  AdvancedMarker,
-  Pin,
-} from "@vis.gl/react-google-maps";
+import CustomMap from "./components/CustomMap";
 import useBusData from "./hooks/useBusData";
 import SearchBar from "./components/SearchBar";
 // Starting components
 
-function CustomMap() {
-  const busData = useBusData();
-  return (
-    <div className="absolute top-0 left-0 w-full min-h-[482px]">
-      <APIProvider apiKey={""}>
-        <Map
-          mapId={"my_map"}
-          style={{ width: "100%", height: "482px" }}
-          defaultCenter={{ lat: 18.480996938618595, lng: -69.9148515636799 }}
-          defaultZoom={14}
-          gestureHandling={"greedy"}
-          disableDefaultUI={true}
-        >
-          {busData.map((bus) => (
-            <CustomMarker
-              lat={bus.location.latitude}
-              lng={bus.location.longitude}
-            />
-          ))}
-        </Map>
-      </APIProvider>
-    </div>
-  );
-}
 
-const CustomMarker = ({ lat, lng }) => {
-  return (
-    <AdvancedMarker position={{ lat, lng }}>
-      <Pin background={"green"} glyphColor={"yellow"} borderColor={"#000"} />
-    </AdvancedMarker>
-  );
-};
 
 
 
