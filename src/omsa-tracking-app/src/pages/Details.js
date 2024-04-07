@@ -1,0 +1,150 @@
+function LocationInfo() {
+  return (
+    <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+      <div className="flex flex-col w-[21%] max-md:ml-0 max-md:w-full">
+        <div className="flex grow gap-1 text-2xl font-medium text-black whitespace-nowrap">
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/37b661cb3a38d070a369cfa0ac693b8b5e5d62abffae6ea64d9a860ffd5c5847?apiKey=fb34ab8a011e440488e897e0309c7345&"
+            alt="Location icon"
+            className="shrink-0 w-8 aspect-square"
+          />
+          <div className="my-auto">43B</div>
+        </div>
+      </div>
+      <div className="flex flex-col ml-5 w-[79%] max-md:ml-0 max-md:w-full">
+        <div className="flex grow gap-5 justify-between text-base text-black">
+          <div className="w-[258px]">
+            Av. 27 de Febrero Proximo Av. Maximo Gomez
+          </div>
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/93ec822bd0da8563635802778d05fb5bd132fe83ec2c274f332594cf66d08048?apiKey=fb34ab8a011e440488e897e0309c7345&"
+            alt="Arrow icon"
+            className="shrink-0 my-auto border border-solid aspect-[1.12] border-neutral-700 fill-neutral-700 stroke-[1px] stroke-neutral-700 w-[27px]"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BusInfo({ bus, capacity, status, eta }) {
+  return (
+    <div className="flex gap-5 justify-between px-4 py-3.5 w-full text-xs bg-white rounded-lg shadow-sm">
+      <div className="flex gap-5 justify-between font-light text-black">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/40fef9e31a6755131d603a542456b939396763217c8319a7f3f7981f65225133?apiKey=fb34ab8a011e440488e897e0309c7345&"
+          alt="Bus icon"
+          className="shrink-0 w-3.5 aspect-[0.74] fill-emerald-700"
+        />
+        <div className="my-auto">{bus}</div>
+      </div>
+      <div className="flex gap-4 my-auto">
+        <div className="flex gap-1.5 text-black">
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/b13488abf6c0e29014fa651374db9513266294773e8aaad39b937f0da37ebe0b?apiKey=fb34ab8a011e440488e897e0309c7345&"
+            alt="Capacity icon"
+            className="shrink-0 w-4 aspect-[1.14] fill-zinc-600"
+          />
+          <div>
+            {capacity.current} / {capacity.total}
+          </div>
+        </div>
+        <div
+          className={`my-auto font-semibold ${status === "Vencida" ? "text-red-500" : "text-black"
+            }`}
+        >
+          {status === "Vencida" ? status : `${eta} min.`}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Details() {
+  const busData = [
+    {
+      bus: "Bus B340M",
+      capacity: { current: 84, total: 220 },
+      status: "Vencida",
+    },
+    {
+      bus: "Bus B340M",
+      capacity: { current: 84, total: 220 },
+      status: "Vencida",
+    },
+    {
+      bus: "Bus B347G",
+      capacity: { current: 68, total: 140 },
+      eta: 6,
+    },
+    {
+      bus: "Bus C240M",
+      capacity: { current: 140, total: 140 },
+      eta: 18,
+    },
+    {
+      bus: "Bus B342M",
+      capacity: { current: 100, total: 220 },
+      eta: 40,
+    },
+    {
+      bus: "Bus B353M",
+      capacity: { current: 210, total: 220 },
+      eta: 49,
+    },
+    {
+      bus: "Bus B353M",
+      capacity: { current: 210, total: 220 },
+      eta: 49,
+    },
+    {
+      bus: "Bus B353M",
+      capacity: { current: 210, total: 220 },
+      eta: 49,
+    },
+    {
+      bus: "Bus B353M",
+      capacity: { current: 210, total: 220 },
+      eta: 49,
+    },
+    {
+      bus: "Bus B353M",
+      capacity: { current: 210, total: 220 },
+      eta: 49,
+    },
+  ];
+
+  return (
+    <div className="flex flex-col justify-center mx-auto w-full bg-white max-w-[480px]">
+      <div className="flex flex-col justify-center py-px w-full bg-white rounded-[32px_32px_0px_0px]">
+        <header className="px-5 pt-16 pb-6 w-full bg-yellow-300">
+          <LocationInfo />
+        </header>
+        <main className="flex flex-col px-8 pt-8 pb-20 w-full bg-stone-50">
+          {busData.map((data, index) => (
+            <div key={index} className={index > 0 ? "mt-5" : ""}>
+              <BusInfo
+                bus={data.bus}
+                capacity={data.capacity}
+                status={data.status}
+                eta={data.eta}
+              />
+            </div>
+          ))}
+        </main>
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/3c8526958204ff61240b17e8569021712fad4d9d69be91fc6890632420e65807?apiKey=fb34ab8a011e440488e897e0309c7345&"
+          alt=""
+          className="w-full shadow-sm aspect-[6.67]"
+        />
+      </div>
+    </div>
+  );
+}
+
+export default Details;
