@@ -3,13 +3,17 @@ import SearchBar from "../components/SearchBar";
 import NearbyBusList from "../components/NearbyBusList";
 import React from "react";
 import NavigationBar from "../components/NavigationBar";
-
+import useBusData from "../hooks/useBusData";
 
 function Home() {
+  const busData = useBusData();
+  const busStops = busData[0] || [];
+  console.log(busData);
+  
   return (
     <div className="flex flex-col mx-auto w-full bg-white max-w-[480px]">
       <div className="flex overflow-hidden relative flex-col px-8 py-16 w-full min-h-[482px]">
-        <CustomMap />
+        <CustomMap busData={busData} />
         <SearchBar />
         <div className="flex relative gap-5 justify-between items-start self-end mt-8 mr-11 max-w-full w-[139px]"></div>
         <img
@@ -28,7 +32,7 @@ function Home() {
           <h2 className="self-start ml-4 text-2xl font-medium text-stone-900">
             Autobuses Cercanos
           </h2>
-          <NearbyBusList />
+          <NearbyBusList busStops={busStops} />
         </div>
       </div>
       <NavigationBar />

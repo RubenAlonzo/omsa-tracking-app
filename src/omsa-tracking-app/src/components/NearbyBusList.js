@@ -1,9 +1,6 @@
-import useBusData from "../hooks/useBusData";
 import NearbyBusItem from "./NearbyBusItem";
 
-function NearbyBusList() {
-  const busData = useBusData();
-  const busStops = busData[0] || [];
+function NearbyBusList({busStops}) {
 
   return (
     <div className="flex flex-col px-5 pt-3.5 pb-6 mt-4 w-full rounded-2xl bg-stone-50">

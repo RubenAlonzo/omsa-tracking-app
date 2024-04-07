@@ -6,13 +6,13 @@ import {
 } from "@vis.gl/react-google-maps";
 import useBusData from "../hooks/useBusData";
 
-function CustomMap() {
-  const busData = useBusData();
+function CustomMap({busData}) {
+  // const busData = useBusData();
   const buses = busData[0]?.buses || [];
   
   return (
     <div className="absolute top-0 left-0 w-full min-h-[482px]">
-      <APIProvider apiKey={""}>
+      <APIProvider apiKey={"AIzaSyAeEXNOM9v9OsJR4ShUTnaaMXQ010Js1EU"}>
         <Map
           mapId={"my_map"}
           style={{ width: "100%", height: "482px" }}
@@ -21,11 +21,11 @@ function CustomMap() {
           gestureHandling={"greedy"}
           disableDefaultUI={true}
         >
-            {/* This is the busStop marker. TODO: Fix issue with the render cycles 
-            <AdvancedMarker position={{ lat: busData.location.latitude, lng: busData.location.longitude }}>
-              <Pin background={"green"} glyphColor={"yellow"} borderColor={"#000"} />
-            </AdvancedMarker> 
-            */}
+            {/* {busData !== undefined && busData !==  null && busData  ?  (
+              <AdvancedMarker position={{ lat: busData[0].location.latitude, lng: busData[0].location.longitude }}>
+                <Pin background={"green"} glyphColor={"yellow"} borderColor={"#000"} />
+              </AdvancedMarker>
+            ) : null} */}
 
 
           {buses.map((bus) => (

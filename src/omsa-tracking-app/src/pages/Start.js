@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function LocationActivationButton() {
   return (
     <button className="justify-center px-7 py-4 mt-10 font-bold bg-yellow-300 rounded-[50px] text-stone-900">
@@ -19,9 +21,9 @@ function Details() {
         Activar la ubicación para encontrar paradas de autobuses cercanos
       </p>
       <LocationActivationButton />
-      <a href="#" className="mt-6 font-light underline">
+      <Link to="/home" className="mt-6 font-light underline">
         Buscaré manualmente
-      </a>
+      </Link>
       <img
         loading="lazy"
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/c858458e9702b178d5141da109fb299991341a118966fbdeb300b009584d5ef6?apiKey=fb34ab8a011e440488e897e0309c7345&"
