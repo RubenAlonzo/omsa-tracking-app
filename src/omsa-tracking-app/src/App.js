@@ -1,62 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   APIProvider,
   Map,
   AdvancedMarker,
   Pin,
 } from "@vis.gl/react-google-maps";
-
+import useBusData from "./hooks/useBusData";
 // Starting components
-class Bus {
-  constructor(id, currentPassengers, capacity, timeToArrival, location) {
-    this.busNumber = `B${id}M`;
-    this.passengers = currentPassengers;
-    this.capacity = capacity;
-    this.status =
-      timeToArrival === "00:00:00" || timeToArrival.includes("-")
-        ? "Vencida"
-        : null;
-    this.eta = `${timeToArrival} min`;
-    this.location = location;
-  }
-}
-
-function useBusData() {
-  const [busData, setBusData] = useState([]);
-  useEffect(() => {
-    const fetchBusData = () => {
-      fetch("http://localhost:5073/api/BusTracking?busStopId=123")
-        .then((response) => response.json())
-        .then((data) => {
-          const buses = data.payload.map(
-            (bus) =>
-              new Bus(
-                bus.id,
-                bus.currentPassengers,
-                bus.capacity,
-                bus.timeToArrival,
-                {
-                  latitude: bus.location.latitude,
-                  longitude: bus.location.longitude,
-                }
-              )
-          );
-          setBusData(buses);
-        })
-        .catch((error) => {
-          console.error("Error fetching bus data:", error);
-          setBusData([]);
-        });
-    };
-
-    fetchBusData();
-    const intervalId = setInterval(fetchBusData, 1000); // Fetch every 1 second
-
-    return () => clearInterval(intervalId); // Clean up on unmount
-  }, []);
-
-  return busData;
-}
 
 function CustomMap() {
   const busData = useBusData();
