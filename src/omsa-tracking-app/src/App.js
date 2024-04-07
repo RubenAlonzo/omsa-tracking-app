@@ -6,15 +6,11 @@ import {
   Pin,
 } from "@vis.gl/react-google-maps";
 import useBusData from "./hooks/useBusData";
+import SearchBar from "./components/SearchBar";
 // Starting components
 
 function CustomMap() {
   const busData = useBusData();
-
-  console.log("MAP");
-
-  console.log(busData);
-
   return (
     <div className="absolute top-0 left-0 w-full min-h-[482px]">
       <APIProvider apiKey={""}>
@@ -46,18 +42,7 @@ const CustomMarker = ({ lat, lng }) => {
   );
 };
 
-function SearchButton() {
-  return (
-    <button className="flex relative gap-5 justify-between px-2 py-2 text-sm font-light text-black bg-white rounded-lg shadow-sm">
-      <span className="my-auto">Buscar paradas</span>
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/2c208b79d74914c77584ed9afe3117b5a486345c631156e2fb2864957f72bcf8?apiKey=fb34ab8a011e440488e897e0309c7345&"
-        alt="Search icon"
-        className="shrink-0 w-6 aspect-square"
-      />
-    </button>
-  );
-}
+
 
 function NearbyBusItem({ busNumber, passengers, capacity, status, eta }) {
   return (
@@ -86,7 +71,6 @@ function NearbyBusItem({ busNumber, passengers, capacity, status, eta }) {
     </div>
   );
 }
-
 
 function NearbyBusList() {
   const busData = useBusData();
@@ -118,8 +102,8 @@ function App() {
   return (
     <div className="flex flex-col mx-auto w-full bg-white max-w-[480px]">
       <div className="flex overflow-hidden relative flex-col px-8 py-16 w-full min-h-[482px]">
-        <SearchButton />
         <CustomMap />
+        <SearchBar />
         <div className="flex relative gap-5 justify-between items-start self-end mt-8 mr-11 max-w-full w-[139px]"></div>
         <img
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/562f4e759dd9bcd9b99fe471ce0234660808cba6c84b6a0483c66ad23b59c47f?apiKey=fb34ab8a011e440488e897e0309c7345&"
