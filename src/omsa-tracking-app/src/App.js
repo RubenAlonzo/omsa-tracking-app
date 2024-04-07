@@ -1,66 +1,15 @@
 import React from "react";
 import CustomMap from "./components/CustomMap";
-import useBusData from "./hooks/useBusData";
 import SearchBar from "./components/SearchBar";
+import NearbyBusList from "./components/NearbyBusList";
 // Starting components
 
 
 
 
 
-function NearbyBusItem({ busNumber, passengers, capacity, status, eta }) {
-  return (
-    <div className="flex gap-5 justify-between p-3.5 mt-2 w-full text-xs text-black bg-white rounded-lg shadow-sm">
-      <div className="flex gap-5 justify-between font-light">
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/a89fe64bae73ad8bd26f270b09df7ab002156809b3f1283cc0be076eda6c5111?apiKey=fb34ab8a011e440488e897e0309c7345&"
-          alt="Bus icon"
-          className="shrink-0 w-3.5 aspect-[0.74] fill-emerald-700"
-        />
-        <div className="my-auto">Bus {busNumber}</div>
-      </div>
-      <div className="flex gap-4 my-auto">
-        <div className="flex gap-1.5">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/b13488abf6c0e29014fa651374db9513266294773e8aaad39b937f0da37ebe0b?apiKey=fb34ab8a011e440488e897e0309c7345&"
-            alt="Passengers icon"
-            className="shrink-0 w-4 aspect-[1.14] fill-zinc-600"
-          />
-          <div>
-            {passengers} / {capacity}
-          </div>
-        </div>
-        <div className="my-auto font-semibold">{status || eta}</div>
-      </div>
-    </div>
-  );
-}
 
-function NearbyBusList() {
-  const busData = useBusData();
-  return (
-    <div className="flex flex-col px-5 pt-3.5 pb-6 mt-4 w-full rounded-2xl bg-stone-50">
-      <div className="flex gap-5 px-px text-black">
-        <div className="flex flex-auto py-3 bg-yellow-300 rounded-lg">
-          <div className="text-sm px-3 font-medium">43B</div>
-          <div className="flex-auto text-xs">
-            Av. 27 de Febrero Proximo Av. Maximo Gomez
-          </div>
-        </div>
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c9ea635c4b25e7e77c5b6bbbf859ca8bbf8f1357cac6222e52b6f8e58a41021?apiKey=fb34ab8a011e440488e897e0309c7345&"
-          alt="Arrow icon"
-          className="shrink-0 my-auto aspect-[0.94] w-[18px]"
-        />
-      </div>
-      {busData && busData.length > 0 ? (
-        busData.map((bus, index) => <NearbyBusItem key={index} {...bus} />)
-      ) : (
-        <div>No Bus available</div>
-      )}
-    </div>
-  );
-}
+
 
 function App() {
   return (
