@@ -1,6 +1,6 @@
 import NearbyBusItem from "./NearbyBusItem";
 
-function NearbyBusList({busStops}) {
+function NearbyBusList({ busStops }) {
 
   return (
     <div className="flex flex-col px-5 pt-3.5 pb-6 mt-4 w-full rounded-2xl bg-stone-50">

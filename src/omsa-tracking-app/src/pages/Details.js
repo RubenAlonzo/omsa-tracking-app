@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar";
 import NearbyBusItem from "../components/NearbyBusItem";
 import useBusData from "../hooks/useBusData";
@@ -13,12 +14,16 @@ function Details() {
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
             <div className="flex flex-col w-[21%] max-md:ml-0 max-md:w-full">
               <div className="flex grow gap-1 text-2xl font-medium text-black whitespace-nowrap">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/37b661cb3a38d070a369cfa0ac693b8b5e5d62abffae6ea64d9a860ffd5c5847?apiKey=fb34ab8a011e440488e897e0309c7345&"
-                  alt="Location icon"
-                  className="shrink-0 w-8 aspect-square"
-                />
+
+                <Link to="/Home">
+                  <img
+                    loading="lazy"
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/37b661cb3a38d070a369cfa0ac693b8b5e5d62abffae6ea64d9a860ffd5c5847?apiKey=fb34ab8a011e440488e897e0309c7345&"
+                    alt="Location icon"
+                    className="shrink-0 w-8 aspect-square"
+                  />
+                </Link>
+
                 <div className="my-auto">{busStops.id}</div>
               </div>
             </div>
