@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import NearbyBusItem from "./NearbyBusItem";
 import BusItemArrow from "../components/icons/bus-item-arrow";
 
-function NearbyBusList({busStops}) {
+function NearbyBusList({ busStops }) {
 
   const handleArrowClick = () => {
     console.log(busStops.id);
