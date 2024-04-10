@@ -3,14 +3,27 @@ import NearbyBusItem from "../components/NearbyBusItem";
 import useBusData from "../hooks/useBusData";
 import HeartSelected from "../components/icons/heart-selected";
 import HeartUnselected from "../components/icons/heart=unselected";
+import axios from 'axios';
 
 function Details() {
   const busData = useBusData(); // TODO: Update or create new request/hook to filter busStop by the id that should be passed from main page.
   const busStops = busData[0] || [];
 
-  const handleHeartClick = () => {
-    console.log("Test del corazon ");
-  };
+  async function handleHeartClick() {
+    const params = new URLSearchParams(window.location.search);
+    let id = params.get('id');
+    
+    if (id) {
+      id = id.slice(0, -1); // Remove the last character from the id
+  
+      try {
+        const response = await axios.get(`https://localhost:7137/api/toggle-favorite?busStopId=${id}`);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error toggling favorite:', error);
+      }
+    }
+  }
 
   return (
     <div className="flex flex-col justify-center mx-auto w-full bg-white max-w-[480px]">
@@ -34,7 +47,7 @@ function Details() {
                   {busStops.name}
                 </div>
                 <button onClick={handleHeartClick}>
-                  <HeartUnselected />
+                  {busStops.isFavorite ? <HeartSelected /> : <HeartUnselected />}
                 </button>
               </div>
             </div>

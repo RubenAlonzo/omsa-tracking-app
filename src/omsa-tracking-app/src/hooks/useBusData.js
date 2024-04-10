@@ -11,7 +11,7 @@ function useBusData() {
     };
 
     fetchData();
-    const intervalId = setInterval(fetchData, 100);
+    const intervalId = setInterval(fetchData, 1000);
 
     return () => clearInterval(intervalId); // Clean up on unmount
   }, []);
