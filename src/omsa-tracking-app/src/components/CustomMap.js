@@ -8,7 +8,11 @@ import useBusData from "../hooks/useBusData";
 
 function CustomMap({busData}) {
   // const busData = useBusData();
-  const buses = busData[0]?.buses || [];
+  const mainBuses = busData[0]?.buses || [];
+  const otherBuses1 = busData[1]?.buses || [];
+  const otherBuses2 = busData[2]?.buses || [];
+  const otherBuses3 = busData[3]?.buses || [];
+  const otherBuses4 = busData[4]?.buses || [];
   
   return (
     <div className="absolute top-0 left-0 w-full min-h-[482px]">
@@ -28,11 +32,15 @@ function CustomMap({busData}) {
             ) : null} */}
 
 
-          {buses.map((bus) => (
-            <AdvancedMarker position={{ lat: bus.location.latitude, lng: bus.location.longitude }}>
-              <Pin background={"green"} glyphColor={"yellow"} borderColor={"#000"} />
-            </AdvancedMarker>
-          ))}
+            {busData.map((busGroup) => 
+              (busGroup?.buses || []).map((bus) => (
+                <AdvancedMarker position={{ lat: bus.location.latitude, lng: bus.location.longitude }}>
+                  <Pin background={"green"} glyphColor={"yellow"} borderColor={"#000"} glyph={bus.busNumber} />
+                </AdvancedMarker>
+              ))
+            )}
+
+
         </Map>
       </APIProvider>
     </div>

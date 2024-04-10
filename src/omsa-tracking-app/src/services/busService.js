@@ -4,7 +4,7 @@ import BusStop from '../models/BusStop';
 
 export const fetchBusData = async () => {
   try {
-    const response = await axios.get('http://localhost:5073/api/BusTracking?busStopId=123');
+    const response = await axios.get('http://localhost:5073/api/bus-stops?busStopId=777');
     const busStops = response.data.payload.map(
       (busStop) => 
         new BusStop(
