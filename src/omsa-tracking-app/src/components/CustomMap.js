@@ -1,9 +1,10 @@
 import {
   APIProvider,
   Map,
-  AdvancedMarker,
-  Pin
+  Pin,
+  AdvancedMarker
 } from "@vis.gl/react-google-maps";
+import SVGComponent from "./pinbusmark";
 
 function CustomMap({busData}) {
   
@@ -30,7 +31,7 @@ function CustomMap({busData}) {
             {busData.map((busGroup) => 
               (busGroup?.buses || []).map((bus) => (
                 <AdvancedMarker position={{ lat: bus.location.latitude, lng: bus.location.longitude }}>
-                  <Pin background={"green"} glyphColor={"yellow"} borderColor={"#000"} glyph={bus.busNumber} />
+                  <SVGComponent style={{ width: '36px', height: '36px', fill: 'yellow' }} />
                 </AdvancedMarker>
               ))
             )}
@@ -41,6 +42,4 @@ function CustomMap({busData}) {
     </div>
   );
 }
-
-
 export default CustomMap;
