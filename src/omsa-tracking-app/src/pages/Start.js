@@ -1,8 +1,40 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+// function LocationActivationButton() {
+//   return (
+//     <button className="justify-center px-7 py-4 mt-10 font-bold bg-yellow-300 rounded-[50px] text-stone-900">
+//       Activar Ubicación
+//     </button>
+//   );
+// }
 
 function LocationActivationButton() {
+  const navigate = useNavigate();
+  
+  const handleLocationActivation = () => {
+    // Solicitar la ubicación al usuario
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        // Éxito: redirigir a la ruta de Home
+        () => {
+          navigate("/home");
+        },
+        // Error:
+        (error) => {
+          console.error("Error obteniendo la ubicación:", error);
+        }
+      );
+    } else {
+      console.error("Geolocalización no es soportada por este navegador");
+    }
+  };
+
   return (
-    <button className="justify-center px-7 py-4 mt-10 font-bold bg-yellow-300 rounded-[50px] text-stone-900">
+    <button
+      className="justify-center px-7 py-4 mt-10 font-bold bg-yellow-300 rounded-[50px] text-stone-900"
+      onClick={handleLocationActivation}
+    >
       Activar Ubicación
     </button>
   );
