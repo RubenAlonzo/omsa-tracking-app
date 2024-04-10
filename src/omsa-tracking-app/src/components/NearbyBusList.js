@@ -3,11 +3,8 @@ import { Link } from 'react-router-dom';
 import NearbyBusItem from "./NearbyBusItem";
 import BusItemArrow from "../components/icons/bus-item-arrow";
 
-function NearbyBusList({ busStops }) {
-
-  const handleArrowClick = () => {
-    console.log(busStops.id);
-  };
+function NearbyBusList({ busStops, busData }) {
+  busStops = busData.find(b => b.id === busStops.id) || busStops;
 
   return (
     <div className="flex flex-col px-5 pt-3.5 pb-6 mt-4 w-full rounded-2xl bg-stone-50">
@@ -18,7 +15,7 @@ function NearbyBusList({ busStops }) {
             {busStops.name} 
           </div>
         </div>
-        <Link to={`/details?id=${busStops.id}`} onClick={handleArrowClick}>
+        <Link to={`/details?id=${busStops.id}`}>
           <BusItemArrow />
         </Link>
       </div>

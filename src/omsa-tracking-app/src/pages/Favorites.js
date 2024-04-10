@@ -16,7 +16,7 @@ function Favorites() {
           Paradas Favoritas
         </h2>
         {favoriteBusData.map((data) => (
-          <NearbyBusList busStops={data} />
+          <NearbyBusList busStops={data} busData={busData} />
         ))}
       </div>
       <NavigationBar />

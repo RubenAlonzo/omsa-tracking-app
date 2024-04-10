@@ -1,20 +1,50 @@
 import CustomMap from "../components/CustomMap";
-import SearchBar from "../components/SearchBar";
 import NearbyBusList from "../components/NearbyBusList";
-import React from "react";
+import React, {useState, useRef} from "react";
 import NavigationBar from "../components/NavigationBar";
 import useBusData from "../hooks/useBusData";
 
 function Home() {
   const busData = useBusData();
-  const busStops = busData[1] || [];
-  console.log(busData);
-  
+  const [busStopValue, setbusStopValue] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  const inputRef = useRef();
+
+  const handleSearch = () => {
+    const searchValue = inputRef.current.value;
+    setInputValue(searchValue);
+    const matchingBusStop = busData.find(busStop => busStop.name === searchValue);
+    console.log(matchingBusStop);
+    if (matchingBusStop) {
+      setbusStopValue(matchingBusStop);
+    }else{
+      setbusStopValue(busData[0] || []);
+    }
+  };
+
   return (
     <div className="flex flex-col mx-auto w-full bg-white max-w-[480px]">
       <div className="flex overflow-hidden relative flex-col px-8 py-16 w-full min-h-[482px]">
-        <CustomMap busData={busData} />
-        <SearchBar />
+        <CustomMap busData={busData} busStop={busStopValue} />
+        {/* Search bar */}
+        <div className="flex relative gap-5 justify-between px-2 py-2 text-sm font-light text-black bg-white rounded-lg shadow-sm">
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Buscar Paradas"
+            className="flex-auto outline-none"
+            ref={inputRef}
+          />
+          <img 
+            id="search-button"
+            onClick={handleSearch}
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/2c208b79d74914c77584ed9afe3117b5a486345c631156e2fb2864957f72bcf8?apiKey=fb34ab8a011e440488e897e0309c7345&"
+            alt="Search icon"
+            className="shrink-0 w-6 aspect-square"
+          />
+        </div>
+        {/* Search bar */}
+
         <div className="flex relative gap-5 justify-between items-start self-end mt-8 mr-11 max-w-full w-[139px]"></div>
         <img
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/562f4e759dd9bcd9b99fe471ce0234660808cba6c84b6a0483c66ad23b59c47f?apiKey=fb34ab8a011e440488e897e0309c7345&"
@@ -32,7 +62,7 @@ function Home() {
           <h2 className="self-start ml-4 text-2xl font-medium text-stone-900">
             Autobuses Cercanos
           </h2>
-          <NearbyBusList busStops={busStops} />
+          <NearbyBusList busStops={busStopValue} busData={busData} />
         </div>
       </div>
       <NavigationBar />

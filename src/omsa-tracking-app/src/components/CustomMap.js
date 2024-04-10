@@ -8,7 +8,7 @@ import {
 import SVGComponent from "./pinbusmark";
 import { useState, useEffect, createRef, useMemo } from "react";
 
-function CustomMap({busData}) {
+function CustomMap({busData, busStop}) {
 
   const buses = useMemo(() => busData[0]?.buses || [], [busData]);
   const [markerRefs, setMarkerRefs] = useState([]);
@@ -30,12 +30,11 @@ function CustomMap({busData}) {
           gestureHandling={"greedy"}
           options={{ disableDefaultUI: true }}
         >
-          {// TODO: Move location based on searched bus stop
-          busData && busData.length > 0 ? (
-            <AdvancedMarker position={{ lat: busData[0].location.latitude, lng: busData[0].location.longitude }}>
+          {busData && busData.length > 0 && busData.find(b => b.id === busStop.id) && (
+            <AdvancedMarker position={{ lat: busStop.location.latitude, lng: busStop.location.longitude }}>
               <Pin background={"red"} glyphColor={"white"} borderColor={"#000"} />
             </AdvancedMarker>
-          ) : null}
+          )}
           
           {buses.map((bus, index) => (
             <AdvancedMarker ref={markerRefs[index]} onClick={() => setInfoWindowShown(index)} position={{ lat: bus.location.latitude, lng: bus.location.longitude }}>
