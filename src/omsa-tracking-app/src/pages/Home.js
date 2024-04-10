@@ -7,7 +7,7 @@ import useBusData from "../hooks/useBusData";
 
 function Home() {
   const busData = useBusData();
-  const busStops = busData[0] || [];
+  const busStops = busData[1] || [];
   console.log(busData);
   
   return (

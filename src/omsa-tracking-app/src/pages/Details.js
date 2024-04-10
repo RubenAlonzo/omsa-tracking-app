@@ -7,15 +7,12 @@ import axios from 'axios';
 
 function Details() {
   const busData = useBusData(); // TODO: Update or create new request/hook to filter busStop by the id that should be passed from main page.
-  const busStops = busData[0] || [];
-
+  const params = new URLSearchParams(window.location.search);
+  let id = params.get('id');
+  id = id ? id.slice(0, -1) : 1; // Remove the last character from the id if it exists, otherwise set it as 0
+  const busStops = busData[id - 1] || [];
   async function handleHeartClick() {
-    const params = new URLSearchParams(window.location.search);
-    let id = params.get('id');
-    
     if (id) {
-      id = id.slice(0, -1); // Remove the last character from the id
-  
       try {
         const response = await axios.get(`https://localhost:7137/api/toggle-favorite?busStopId=${id}`);
         console.log(response.data);
