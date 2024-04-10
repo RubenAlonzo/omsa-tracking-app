@@ -2,12 +2,23 @@ import {
   APIProvider,
   Map,
   Pin,
-  AdvancedMarker
+  AdvancedMarker,
+  InfoWindow,
 } from "@vis.gl/react-google-maps";
 import SVGComponent from "./pinbusmark";
+import { useState, useEffect, createRef, useMemo } from "react";
 
 function CustomMap({busData}) {
-  
+
+  const buses = useMemo(() => busData[0]?.buses || [], [busData]);
+  const [markerRefs, setMarkerRefs] = useState([]);
+  const [infoWindowShown, setInfoWindowShown] = useState(null);
+
+  useEffect(() => {
+    setMarkerRefs((refs) => Array(buses.length).fill().map((_, i) => refs[i] || createRef()));
+  }, [buses]);
+
+
   return (
     <div className="absolute top-0 left-0 w-full min-h-[482px]">
       <APIProvider apiKey={""}>
@@ -17,26 +28,25 @@ function CustomMap({busData}) {
           defaultCenter={{ lat: 18.480996938618595, lng: -69.9148515636799 }}
           defaultZoom={14}
           gestureHandling={"greedy"}
-          disableDefaultUI={true}
+          options={{ disableDefaultUI: true }}
         >
-            {// TODO: Move location based on searched bus stop
-              busData && busData.length > 0 ? (
-                <AdvancedMarker position={{ lat: busData[0].location.latitude, lng: busData[0].location.longitude }}>
-                  <Pin background={"red"} glyphColor={"white"} borderColor={"#000"} />
-                </AdvancedMarker>
-              ) : null
-            }
-
-
-            {busData.map((busGroup) => 
-              (busGroup?.buses || []).map((bus) => (
-                <AdvancedMarker position={{ lat: bus.location.latitude, lng: bus.location.longitude }}>
-                  <SVGComponent style={{ width: '36px', height: '36px', fill: 'yellow' }} />
-                </AdvancedMarker>
-              ))
-            )}
-
-
+          {// TODO: Move location based on searched bus stop
+          busData && busData.length > 0 ? (
+            <AdvancedMarker position={{ lat: busData[0].location.latitude, lng: busData[0].location.longitude }}>
+              <Pin background={"red"} glyphColor={"white"} borderColor={"#000"} />
+            </AdvancedMarker>
+          ) : null}
+          
+          {buses.map((bus, index) => (
+            <AdvancedMarker ref={markerRefs[index]} onClick={() => setInfoWindowShown(index)} position={{ lat: bus.location.latitude, lng: bus.location.longitude }}>
+              <SVGComponent style={{ width: '36px', height: '36px', fill: 'yellow' }} />
+              {infoWindowShown === index && (
+                <InfoWindow anchor={markerRefs[index].current} onCloseClick={() => setInfoWindowShown(null)}>
+                  {bus.busNumber}
+                </InfoWindow>
+              )}
+            </AdvancedMarker>
+          ))}
         </Map>
       </APIProvider>
     </div>
