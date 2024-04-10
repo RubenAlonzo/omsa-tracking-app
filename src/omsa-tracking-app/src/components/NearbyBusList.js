@@ -1,6 +1,13 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import NearbyBusItem from "./NearbyBusItem";
+import BusItemArrow from "../components/icons/bus-item-arrow";
 
 function NearbyBusList({busStops}) {
+
+  const handleArrowClick = () => {
+    console.log(busStops.id);
+  };
 
   return (
     <div className="flex flex-col px-5 pt-3.5 pb-6 mt-4 w-full rounded-2xl bg-stone-50">
@@ -8,14 +15,12 @@ function NearbyBusList({busStops}) {
         <div className="flex flex-auto py-3 bg-yellow-300 rounded-lg">
           <div className="text-sm px-3 font-medium">{busStops.id}</div>
           <div className="flex-auto text-xs">
-            {busStops.name}
+            {busStops.name} 
           </div>
         </div>
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c9ea635c4b25e7e77c5b6bbbf859ca8bbf8f1357cac6222e52b6f8e58a41021?apiKey=fb34ab8a011e440488e897e0309c7345&"
-          alt="Arrow icon"
-          className="shrink-0 my-auto aspect-[0.94] w-[18px]"
-        />
+        <Link to={`/details?id=${busStops.id}`} onClick={handleArrowClick}>
+          <BusItemArrow />
+        </Link>
       </div>
       {busStops.buses && busStops.buses.length > 0 ? (
         busStops.buses.map((bus, index) => <NearbyBusItem key={index} {...bus} />)

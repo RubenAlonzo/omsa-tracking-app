@@ -1,10 +1,16 @@
 import NavigationBar from "../components/NavigationBar";
 import NearbyBusItem from "../components/NearbyBusItem";
 import useBusData from "../hooks/useBusData";
+import HeartSelected from "../components/icons/heart-selected";
+import HeartUnselected from "../components/icons/heart=unselected";
 
 function Details() {
   const busData = useBusData(); // TODO: Update or create new request/hook to filter busStop by the id that should be passed from main page.
   const busStops = busData[0] || [];
+
+  const handleHeartClick = () => {
+    console.log("Test del corazon ");
+  };
 
   return (
     <div className="flex flex-col justify-center mx-auto w-full bg-white max-w-[480px]">
@@ -27,12 +33,9 @@ function Details() {
                 <div className="w-[258px]">
                   {busStops.name}
                 </div>
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/93ec822bd0da8563635802778d05fb5bd132fe83ec2c274f332594cf66d08048?apiKey=fb34ab8a011e440488e897e0309c7345&"
-                  alt="Arrow icon"
-                  className="shrink-0 my-auto border border-solid aspect-[1.12] border-neutral-700 fill-neutral-700 stroke-[1px] stroke-neutral-700 w-[27px]"
-                />
+                <button onClick={handleHeartClick}>
+                  <HeartUnselected />
+                </button>
               </div>
             </div>
           </div>

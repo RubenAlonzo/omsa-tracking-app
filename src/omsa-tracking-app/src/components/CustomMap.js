@@ -12,7 +12,7 @@ function CustomMap({busData}) {
   
   return (
     <div className="absolute top-0 left-0 w-full min-h-[482px]">
-      <APIProvider apiKey={"AIzaSyAeEXNOM9v9OsJR4ShUTnaaMXQ010Js1EU"}>
+      <APIProvider apiKey={""}>
         <Map
           mapId={"my_map"}
           style={{ width: "100%", height: "482px" }}
