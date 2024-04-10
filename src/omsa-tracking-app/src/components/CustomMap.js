@@ -1,18 +1,19 @@
 import {
   APIProvider,
   Map,
-  AdvancedMarker,
-  Pin
+  AdvancedMarker
 } from "@vis.gl/react-google-maps";
 import useBusData from "../hooks/useBusData";
+import SVGComponent from "./pinbusmark";
 
-function CustomMap({busData}) {
+
+function CustomMap({ busData }) {
   // const busData = useBusData();
   const buses = busData[0]?.buses || [];
-  
+
   return (
     <div className="absolute top-0 left-0 w-full min-h-[482px]">
-      <APIProvider apiKey={"AIzaSyAeEXNOM9v9OsJR4ShUTnaaMXQ010Js1EU"}>
+      <APIProvider apiKey={""}>
         <Map
           mapId={"my_map"}
           style={{ width: "100%", height: "482px" }}
@@ -21,7 +22,7 @@ function CustomMap({busData}) {
           gestureHandling={"greedy"}
           disableDefaultUI={true}
         >
-            {/* {busData !== undefined && busData !==  null && busData  ?  (
+          {/* {busData !== undefined && busData !==  null && busData  ?  (
               <AdvancedMarker position={{ lat: busData[0].location.latitude, lng: busData[0].location.longitude }}>
                 <Pin background={"green"} glyphColor={"yellow"} borderColor={"#000"} />
               </AdvancedMarker>
@@ -30,7 +31,7 @@ function CustomMap({busData}) {
 
           {buses.map((bus) => (
             <AdvancedMarker position={{ lat: bus.location.latitude, lng: bus.location.longitude }}>
-              <Pin background={"green"} glyphColor={"yellow"} borderColor={"#000"} />
+              <SVGComponent style={{ width: '36px', height: '36px', fill: 'yellow' }} />
             </AdvancedMarker>
           ))}
         </Map>
@@ -38,6 +39,4 @@ function CustomMap({busData}) {
     </div>
   );
 }
-
-
 export default CustomMap;
