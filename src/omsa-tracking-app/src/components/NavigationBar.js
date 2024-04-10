@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaHeart, FaHome, FaInfoCircle } from 'react-icons/fa';
 import HeartSelected from "../components/icons/heart-selected";
 import HeartUnselected from "../components/icons/heart=unselected";
 import ListSelected from "../components/icons/navigation/list-selected";
