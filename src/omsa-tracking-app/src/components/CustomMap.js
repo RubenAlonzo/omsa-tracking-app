@@ -1,6 +1,7 @@
 import {
   APIProvider,
   Map,
+  Pin,
   AdvancedMarker
 } from "@vis.gl/react-google-maps";
 import SVGComponent from "./pinbusmark";
