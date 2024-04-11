@@ -1,6 +1,6 @@
 import CustomMap from "../components/CustomMap";
 import NearbyBusList from "../components/NearbyBusList";
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import NavigationBar from "../components/NavigationBar";
 import useBusData from "../hooks/useBusData";
 
@@ -21,6 +21,12 @@ function Home() {
       setbusStopValue(busData[0] || []);
     }
   };
+
+  useEffect(() => {
+    if (busStopValue.length == 0 && busData.length > 0) {
+      setbusStopValue(busData[0] || []);
+    }
+  }, [busData]);
 
   return (
     <div className="flex flex-col mx-auto w-full bg-white max-w-[480px]">
