@@ -27,6 +27,7 @@ function CustomMap({busData, busStop}) {
           style={{ width: "100%", height: "482px" }}
           defaultCenter={{ lat: 18.480996938618595, lng: -69.9148515636799 }}
           defaultZoom={14}
+          defaultZoom={15}
           gestureHandling={"greedy"}
           options={{ disableDefaultUI: true }}
         >
