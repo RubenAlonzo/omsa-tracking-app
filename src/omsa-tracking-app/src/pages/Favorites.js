@@ -17,7 +17,7 @@ function Favorites() {
     <div className="flex flex-col pt-20 mx-auto w-full bg-white max-w-[480px]">
       <div className="flex flex-col px-6 w-full">
         {/* Search bar */}
-        <div className="flex relative gap-5 justify-between px-2 py-2 text-sm font-light text-black bg-white rounded-lg shadow-sm">
+        <div className="flex relative gap-5 justify-between px-2 py-2 text-sm font-light text-black bg-white rounded-lg shadow-md">
           <input
             id="search-input"
             type="text"

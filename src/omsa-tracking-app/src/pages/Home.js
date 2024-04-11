@@ -33,7 +33,7 @@ function Home() {
       <div className="flex overflow-hidden relative flex-col px-8 py-16 w-full min-h-[482px]">
         <CustomMap busData={busData} busStop={busStopValue} />
         {/* Search bar */}
-        <div className="flex relative gap-5 justify-between px-2 py-2 text-sm font-light text-black bg-white rounded-lg shadow-sm">
+        <div className="flex relative gap-5 justify-between px-2 py-2 text-sm font-light text-black bg-white rounded-lg shadow-md">
           <input
             id="search-input"
             type="text"
